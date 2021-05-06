@@ -103,6 +103,7 @@ router.post('/unstaking', function(req,res){
 
 router.get('/waittinglist', function(req,res){
     try{
+        console.log('getlist');
         res.setHeader('Content-Type', 'application/json');
         db.GetList(function(result) {
             res.send(JSON.stringify(result));
@@ -115,6 +116,8 @@ router.get('/waittinglist', function(req,res){
 router.post('/waittinglist', function(req,res){
     try{
         var body = req.body;
+        console.log('postlist');
+
         res.setHeader('Content-Type', 'application/json');
         db.UpdateWidthdrawRequest(body, function(result) {
             res.send(JSON.stringify(result));
