@@ -113,7 +113,7 @@ router.get('/waittinglist', function(req,res){
     }
 });
 
-router.post('/waittinglist', function(req,res){
+router.post('/updaterequest', function(req,res){
     try{
         var body = req.body;
         console.log('postlist');
