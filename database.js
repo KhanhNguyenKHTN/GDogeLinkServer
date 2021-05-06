@@ -418,3 +418,30 @@ exports.WithDrawToken = function(data, callback){
   }
 };
 //#region 
+
+
+//#region GetList
+exports.GetList = function(callback){
+  try {
+    con.query('SELECT * FROM WithdrawRequest WHERE HasSendToken = FALSE;', function(err,res,fid){
+
+      return callback({data: res, message: "done"});
+    });
+  } catch (error) {
+    return callback({message: error});
+  }
+};
+//#endregion
+
+
+//#region GetList
+exports.UpdateWidthdrawRequest = function(body, callback){
+  try {
+    con.query('UPDATE WithdrawRequest SET HasSendToken = TRUE, SendHash = ? WHERE ReceiveHash = ?;', [body.SendHash.toLowerCase(), body.ReceiveHash.toLowerCase()], function(err,res,fid){
+      return callback({message: "Updated", hash: body.ReceiveHash});
+    });
+  } catch (error) {
+    return callback({message: error});
+  }
+};
+//#endregion

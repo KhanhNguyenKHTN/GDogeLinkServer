@@ -65,6 +65,7 @@ router.post('/deposit', function(req,res){
 
 router.post('/withdraw', function(req,res){
     try{
+        console.log('widthdraw');
         var body = req.body;
         res.setHeader('Content-Type', 'application/json');
 
@@ -93,6 +94,29 @@ router.post('/unstaking', function(req,res){
         var body = req.body;
         res.setHeader('Content-Type', 'application/json');
         db.UnStakingToken(body, function(result) {
+            res.send(JSON.stringify(result));
+        });
+    }catch{
+        res.send(JSON.stringify({message: 'ERROR'}));
+    }
+});
+
+router.get('/waittinglist', function(req,res){
+    try{
+        res.setHeader('Content-Type', 'application/json');
+        db.GetList(function(result) {
+            res.send(JSON.stringify(result));
+        });
+    }catch{
+        res.send(JSON.stringify({message: 'ERROR'}));
+    }
+});
+
+router.post('/waittinglist', function(req,res){
+    try{
+        var body = req.body;
+        res.setHeader('Content-Type', 'application/json');
+        db.UpdateWidthdrawRequest(body, function(result) {
             res.send(JSON.stringify(result));
         });
     }catch{
